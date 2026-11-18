@@ -4,13 +4,21 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.lab13animaciones.ui.theme.Lab13AnimacionesTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,10 +28,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Lab13AnimacionesTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    MenuEjercicios(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -31,17 +36,27 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun MenuEjercicios(modifier: Modifier = Modifier) {
+    var ejercicio by rememberSaveable { mutableIntStateOf(1) }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Lab13AnimacionesTheme {
-        Greeting("Android")
+    Column(modifier = modifier.fillMaxSize()) {
+        TabRow(selectedTabIndex = ejercicio - 1) {
+            for (numero in 1..4) {
+                Tab(
+                    selected = ejercicio == numero,
+                    onClick = { ejercicio = numero },
+                    text = { Text("Ej $numero") }
+                )
+            }
+        }
+
+        Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+            when (ejercicio) {
+                1 -> Ejercicio1Visibilidad()
+                2 -> Text("Ejercicio 2 pendiente")
+                3 -> Text("Ejercicio 3 pendiente")
+                else -> Text("Ejercicio 4 pendiente")
+            }
+        }
     }
 }
