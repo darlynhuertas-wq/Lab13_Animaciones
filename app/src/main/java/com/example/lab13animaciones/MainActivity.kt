@@ -55,7 +55,7 @@ fun MenuEjercicios(modifier: Modifier = Modifier) {
                 1 -> Ejercicio1Visibilidad()
                 2 -> Ejercicio2Color()
                 3 -> Ejercicio3TamanoPosicion()
-                else -> Text("Ejercicio 4 pendiente")
+                else -> Ejercicio4Contenido()
             }
         }
     }
