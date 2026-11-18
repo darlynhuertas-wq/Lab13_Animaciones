@@ -53,7 +53,7 @@ fun MenuEjercicios(modifier: Modifier = Modifier) {
         Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
             when (ejercicio) {
                 1 -> Ejercicio1Visibilidad()
-                2 -> Text("Ejercicio 2 pendiente")
+                2 -> Ejercicio2Color()
                 3 -> Text("Ejercicio 3 pendiente")
                 else -> Text("Ejercicio 4 pendiente")
             }
