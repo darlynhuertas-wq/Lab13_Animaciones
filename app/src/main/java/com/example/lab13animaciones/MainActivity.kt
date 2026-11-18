@@ -41,21 +41,22 @@ fun MenuEjercicios(modifier: Modifier = Modifier) {
 
     Column(modifier = modifier.fillMaxSize()) {
         TabRow(selectedTabIndex = ejercicio - 1) {
-            for (numero in 1..4) {
+            for (numero in 1..5) {
                 Tab(
                     selected = ejercicio == numero,
                     onClick = { ejercicio = numero },
-                    text = { Text("Ej $numero") }
+                    text = { Text(if (numero == 5) "Juego" else "Ej $numero") }
                 )
             }
         }
 
-        Box(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+        Box(modifier = Modifier.fillMaxSize().padding(12.dp)) {
             when (ejercicio) {
                 1 -> Ejercicio1Visibilidad()
                 2 -> Ejercicio2Color()
                 3 -> Ejercicio3TamanoPosicion()
-                else -> Ejercicio4Contenido()
+                4 -> Ejercicio4Contenido()
+                else -> JuegoArena()
             }
         }
     }
